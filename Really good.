@@ -1,0 +1,32 @@
+-- ===== UI นนท์ แยก =====
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- สมมติว่า main คือ Frame หลักของ Hub
+-- ถ้าชื่อไม่ตรง เปลี่ยน main เป็น Frame ของมึง
+local uiOpen = true
+
+-- ปุ่มลอย
+local toggleGui = Instance.new("ScreenGui")
+toggleGui.Name = "ของนนท์ดิวะ"
+toggleGui.ResetOnSpawn = false
+toggleGui.Parent = player:WaitForChild("PlayerGui")
+
+local toggleBtn = Instance.new("TextButton", toggleGui)
+toggleBtn.Size = UDim2.fromScale(0.12, 0.07)
+toggleBtn.Position = UDim2.fromScale(0.02, 0.45)
+toggleBtn.Text = "เมนู"
+toggleBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+toggleBtn.TextColor3 = Color3.new(1,1,1)
+toggleBtn.TextScaled = true
+toggleBtn.Font = Enum.Font.GothamBold
+toggleBtn.Active = true
+toggleBtn.Draggable = true
+
+Instance.new("UICorner", toggleBtn).CornerRadius = UDim.new(1,0)
+
+-- สลับเปิด/ปิด Hub
+toggleBtn.MouseButton1Click:Connect(function()
+    uiOpen = not uiOpen
+    main.Visible = uiOpen
+end)
